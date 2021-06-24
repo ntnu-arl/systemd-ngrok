@@ -1,24 +1,17 @@
-# Installation
+# systemd-ngrok
 
-Step 1: Place [`ngrok`](https://ngrok.com/download) in `/opt/ngrok/`.
+This utility, among other things, allows you to setup a persistent tunnel to a host system that is accessible over the web. 
 
-Step 2: Get `authtoken` from ngrok website, then add it to `/opt/ngrok/ngrok.yml`.
+## Basic persistent ssh setup
 
-Step 3. Modify your own configrations in `/opt/ngrok/ngrok.yml`.
+1. Create an account on https://ngrok.com
+2. Download ngrok on the system that you want to tunnel into (Note: there are different versions of ngrok depending on your architecture)
+3. `sudo mkdir /opt/ngrok && cp <unzipped_folder>/ngrok /opt/ngrok/`
+4. Copy your authtoken from https://dashboard.ngrok.com/get-started/your-authtoken and replace it in https://github.com/ntnu-arl/systemd-ngrok/blob/edcc59014fac622a1fbbb2fbec1171ca34bf8ea1/ngrok.yml#L1
+5. `sudo cp ngrok.yml /opt/ngrok/`
+6. `sudo cp ngrok.service /lib/systemd/system/`
+7. `systemctl enable ngrok.service && systemctl start ngrok.service`
 
-Step 4: Add `ngrok.service` to `/lib/systemd/system/`.
 
-Step 5: Start ngrok service by typing:
-
-```
-    systemctl enable ngrok.service
-    systemctl start ngrok.service
-```
-
-or just execute `install.sh` on Linux x64 platform.
-
-```
-    curl -O https://raw.githubusercontent.com/vincenthsu/systemd-ngrok/master/install.sh
-    chmod +x install.sh
-    sudo ./install.sh <your_authtoken>
-```
+Todo: 
+check install file
